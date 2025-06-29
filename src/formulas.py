@@ -18,13 +18,13 @@ def calculate_level(r, p):
     convertion = Diccionario de la equivalencia de 100 tek.
     en la interacion se multiplica la cantidad de tek por el valor de la equivalencia (value) y se redondea.
 """
-import convertions
+import convertions.tek_convertions as tek_convertions
 
 def convertion_tek(quantity_tek, convertion_dict=None):
     if quantity_tek < 0:
         raise ValueError("La cantidad de tek no puede ser negativa.")
     if convertion_dict is None:
-        convertion_dict = convertions.default_convertion
+        convertion_dict = tek_convertions.default_convertion
     result = {}
     for item, value in convertion_dict.items():
         result[item] = round((quantity_tek / 100) * value)

@@ -1,7 +1,7 @@
 import json
 import os
 
-JSON_PATH = os.path.join(os.path.dirname(__file__), "convertions.json")
+JSON_PATH = os.path.join(os.path.dirname(__file__), "save_convertions.json")
 
 def load_convertions():
     with open(JSON_PATH, "r", encoding="utf-8") as f:

@@ -1,104 +1,118 @@
 #main de la aplicacion para el calculo de conversion y nivel de criatura
 import formulas
-import convertions
+import convertions.tek_convertions as tek_convertions
+import translations.def_translations as def_translations
 
 # Definicion de la funcion menu para que el usuario seleccione la opcion deseada 
 def menu():
-    print("\nBienvenido al programa de calculo de conversion y nivel de criatura")
-    print("1. Calculo de nivel de embriones")
-    print("2. Calculo de conversion de tek")
-    print("3. Crear nueva lista de conversiones")
-    print("4. Borrar lista de conversiones")
-    print("0. Salir")
-    print("------------------------------------------")
-    opcion = int(input("Seleccione una opcion: "))
-    return opcion
+    print(def_translations.translate("\nWelcome to the conversion and creature level calculator"))
+    print(def_translations.translate("1. Embryo level calculation"))
+    print(def_translations.translate("2. Tek conversion calculation"))
+    print(def_translations.translate("3. Create new conversion list"))
+    print(def_translations.translate("4. Delete custom conversion list"))
+    print(def_translations.translate("0. Exit"))
+    print(def_translations.translate("------------------------------------------"))
+    option = input(def_translations.translate("Select an option: "))
+    if option.lower() == "idioma":
+        return "idioma"
+    try:
+        return int(option)
+    except ValueError:
+        return -1
 
-def crear_nueva_lista():
-    default_convertion = convertions.get_default_convertion()
-    nueva_lista = {}
-    print("Crea una nueva lista de conversiones personalizada.")
-    print("Para saltar un item, solo presiona Enter sin escribir nada.")
+def create_new_list():
+    default_convertion = tek_convertions.get_default_convertion()
+    new_list = {}
+    print(def_translations.translate("Create a new custom conversion list."))
+    print(def_translations.translate("To skip an item, just press Enter without typing anything."))
     for item in default_convertion:
-        entrada = input(f"Valor para '{item}' (deja vacío para omitir): ")
-        if entrada.strip() == "":
+        entry = input(def_translations.translate("Value for '{item}' (leave empty to skip): ").format(item=item))
+        if entry.strip() == "":
             continue
         try:
-            valor = int(entrada)
-            nueva_lista[item] = valor
+            value = int(entry)
+            new_list[item] = value
         except ValueError:
-            print("Valor inválido, se omite este item.")
-    nombre = input("Ponle un nombre a tu lista personalizada: ").strip()
-    if not nombre:
-        nombre = f"Personalizada {len(convertions.get_custom_convertions())+1}"
-    convertions.add_custom_convertion(nombre, nueva_lista)
-    print(f"¡Lista '{nombre}' guardada!")
+            print(def_translations.translate("Invalid value, this item will be skipped."))
+    name = input(def_translations.translate("Give a name to your custom list: ")).strip()
+    if not name:
+        name = f"Custom {len(tek_convertions.get_custom_convertions())+1}"
+    tek_convertions.add_custom_convertion(name, new_list)
+    print(def_translations.translate("List '{name}' saved!").format(name=name))
 
-def elegir_lista():
-    default_convertion = convertions.get_default_convertion()
-    custom_convertions = convertions.get_custom_convertions()
-    print("Elige la lista de conversiones:")
-    print("0. Default")
+def choose_list():
+    default_convertion = tek_convertions.get_default_convertion()
+    custom_convertions = tek_convertions.get_custom_convertions()
+    print(def_translations.translate("Choose the conversion list:"))
+    print(def_translations.translate("0. Default"))
     for idx, lista in enumerate(custom_convertions, 1):
         print(f"{idx}. {lista['name']}")
-    seleccion = int(input("Selecciona el número de la lista: "))
-    if seleccion == 0:
+    selection = int(input(def_translations.translate("Select the list number: ")))
+    if selection == 0:
         return default_convertion
-    elif 1 <= seleccion <= len(custom_convertions):
-        return custom_convertions[seleccion - 1]["items"]
+    elif 1 <= selection <= len(custom_convertions):
+        return custom_convertions[selection - 1]["items"]
     else:
-        print("Selección inválida, usando default.")
+        print(def_translations.translate("Invalid selection, using default."))
         return default_convertion
 
-def borrar_lista_personalizada():
-    custom_convertions = convertions.get_custom_convertions()
+def delete_custom_list():
+    custom_convertions = tek_convertions.get_custom_convertions()
     if not custom_convertions:
-        print("No hay listas personalizadas para borrar.")
+        print(def_translations.translate("There are no custom lists to delete."))
         return
-    print("Listas personalizadas:")
+    print(def_translations.translate("Custom lists:"))
     for idx, lista in enumerate(custom_convertions, 1):
         print(f"{idx}. {lista['name']}")
-    seleccion = int(input("Selecciona el número de la lista a borrar (0 para cancelar): "))
-    if 1 <= seleccion <= len(custom_convertions):
-        nombre = custom_convertions[seleccion - 1]["name"]
-        confirm = input(f"¿Seguro que quieres borrar '{nombre}'? (s/n): ")
-        if confirm.lower() == "s":
-            convertions.remove_custom_convertion(seleccion - 1)
-            print(f"Lista '{nombre}' borrada.")
+    selection = int(input(def_translations.translate("Select the number of the list to delete (0 to cancel): ")))
+    if 1 <= selection <= len(custom_convertions):
+        name = custom_convertions[selection - 1]["name"]
+        confirm = input(def_translations.translate("Are you sure you want to delete '{name}'? (y/n): ").format(name=name))
+        if confirm.lower() == "y" or "s":
+            tek_convertions.remove_custom_convertion(selection - 1)
+            print(def_translations.translate("List '{name}' deleted.").format(name=name))
         else:
-            print("Operación cancelada.")
+            print(def_translations.translate("Operation cancelled."))
     else:
-        print("Operación cancelada.")
+        print(def_translations.translate("Operation cancelled."))
 
 # Definicion de la funcion main para ejecutar el programa
 def main():
     while True:
-        opcion = menu()
-        if opcion == 1:
-            r = int(input("\nIngrese el nivel de la Reaper: "))
-            p = int(input("Ingrese el nivel de su personaje: "))
+        option = menu()
+        if isinstance(option, str) and option.lower() == "idioma":
+            lang = input("Choose language (en/es): ").strip().lower()
+            if lang in ("en", "es"):
+                def_translations.set_language(lang)
+                print("Language changed!")
+            else:
+                print("Invalid language.")
+            continue
+        if option == 1:
+            r = int(input(def_translations.translate("Enter the Reaper's level: ")))
+            p = int(input(def_translations.translate("Enter your character's level: ")))
             try:
-                resultado = formulas.calculate_level(r, p)
-                print("------------------------------------------")
-                print(f"\nEl nivel del embrion es: {resultado}\n")
-                print("------------------------------------------")
+                result = formulas.calculate_level(r, p)
+                print(def_translations.translate("------------------------------------------"))
+                print(def_translations.translate("The embryo's level is: {result}").format(result=result))
+                print(def_translations.translate("------------------------------------------"))
             except ValueError as e:
                 print(e)
-        elif opcion == 2:
-            lista = elegir_lista()
-            cantidad = int(input("Cantidad de tek: "))
-            print("------------------------------------------")
-            print(formulas.convertion_tek(cantidad, lista))
-            print("------------------------------------------")
-        elif opcion == 3:
-            crear_nueva_lista()
-        elif opcion == 4:
-            borrar_lista_personalizada()
-        elif opcion == 0:
-            print("Saliendo del programa...")
+        elif option == 2:
+            lista = choose_list()
+            amount = int(input(def_translations.translate("Amount of tek: ")))
+            print(def_translations.translate("------------------------------------------"))
+            print(formulas.convertion_tek(amount, lista))
+            print(def_translations.translate("------------------------------------------"))
+        elif option == 3:
+            create_new_list()
+        elif option == 4:
+            delete_custom_list()
+        elif option == 0:
+            print(def_translations.translate("Exiting the program..."))
             break
         else:
-            print("Opcion no valida. Intente nuevamente.")
+            print(def_translations.translate("Invalid option. Please try again."))
 # Llamada a la funcion main para ejecutar el programa
 if __name__ == "__main__":
     main()
