@@ -12,7 +12,7 @@
   "Please enter a valid, non-negative number.": "Por favor, ingrese un número válido y no negativo.",
   "Create a new custom conversion list.": "Crea una nueva lista de conversiones personalizada.",
   "To skip an item, just press Enter without typing anything.": "Para saltar un elemento, simplemente presiona Enter sin escribir nada.",
-  "Value for '{item}' (leave empty to skip): ": "Valor para '{item}' (deja vacío para omitir): ",
+  "Value for '{item}': ": "Valor para '{item}': ",
   "Invalid value, this item will be skipped.": "Valor inválido, este elemento será omitido.",
   "Give a name to your custom list: ": "Ponle un nombre a tu lista personalizada: ",
   "List '{name}' saved!": "¡Lista '{name}' guardada!",

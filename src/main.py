@@ -25,13 +25,13 @@ def create_new_list():
     new_list = {}
     print(def_translations.translate("Create a new custom conversion list."))
     print(def_translations.translate("To skip an item, just press Enter without typing anything."))
-    for item in default_convertion:
-        entry = input(def_translations.translate("Value for '{item}' (leave empty to skip): ").format(item=item))
+    for num, item in default_convertion.items():
+        entry = input(def_translations.translate("Value for '{item}': ").format(item=f"{num}. {item['name']}"))
         if entry.strip() == "":
             continue
         try:
             value = int(entry)
-            new_list[item] = value
+            new_list[num] = {"name": item["name"], "value": value}
         except ValueError:
             print(def_translations.translate("Invalid value, this item will be skipped."))
     name = input(def_translations.translate("Give a name to your custom list: ")).strip()
@@ -76,6 +76,21 @@ def delete_custom_list():
     else:
         print(def_translations.translate("Operation cancelled."))
 
+def choose_item_or_all(convertion_dict):
+    print(def_translations.translate("Choose an item to convert or 0 for all:"))
+    for num, item in convertion_dict.items():
+        print(f"{num}. {item['name']}")
+    print("0. " + def_translations.translate("All items"))
+    while True:
+        try:
+            selection = int(input(def_translations.translate("Enter the item number: ")))
+            if selection == 0 or str(selection) in convertion_dict:
+                return selection
+            else:
+                print(def_translations.translate("Invalid selection. Try again."))
+        except ValueError:
+            print(def_translations.translate("Please enter a valid number."))
+
 # Definicion de la funcion main para ejecutar el programa
 def main():
     while True:
@@ -107,8 +122,9 @@ def main():
             while True:
                 try:
                     amount = int(input(def_translations.translate("Amount of tek: ")))
+                    item_number = choose_item_or_all(lista)
                     print("------------------------------------------")
-                    print(formulas.convertion_tek(amount, lista))
+                    print(formulas.convertion_tek(amount, lista, item_number if item_number != 0 else None))
                     print("------------------------------------------")
                     break  # Exit loop if conversion is successful
                 except ValueError as e:
