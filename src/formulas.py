@@ -1,28 +1,29 @@
-#formulas para calculo de conversion y nivel de criatura
+# Formulas for conversion and creature level calculation
+import translations.def_translations as def_translations
 """
-    Calculo de niveles de embriones en el juego de Reapers
-    r = Nivel de la Reaper
-    p = Nivel de tu personaje
-    e = Nivel del embrion sin sumar los 75 puntos base.
-    final_level = Nivel final del embrion despues de la suma de los 75 puntos base.
+    Embryo level calculation in the game Reapers
+    r = Reaper's level
+    p = Your character's level
+    e = Embryo's level without adding the 75 base points.
+    final_level = Final level of the embryo after adding the 75 base points.
 """
 def calculate_level(r, p):
     if r < 0 or p < 0:
-        raise ValueError("Los niveles no pueden ser negativos.")
+        raise ValueError(def_translations.translate("Levels cannot be negative."))
     e = r * (p + 100) / 250
-    return int(e + 75) 
+    return int(e + 75)
 
 """
-    Función de la lista de equivalencias de 100 tek.
-    quantity_tek = Cantidad de tek a convertir.
-    convertion = Diccionario de la equivalencia de 100 tek.
-    en la interacion se multiplica la cantidad de tek por el valor de la equivalencia (value) y se redondea.
+    Function for the equivalence list of 100 tek.
+    quantity_tek = Amount of tek to convert.
+    convertion = Dictionary of the equivalence for 100 tek.
+    In the iteration, the amount of tek is multiplied by the equivalence value and rounded.
 """
 import convertions.tek_convertions as tek_convertions
 
 def convertion_tek(quantity_tek, convertion_dict=None):
     if quantity_tek < 0:
-        raise ValueError("La cantidad de tek no puede ser negativa.")
+        raise ValueError(def_translations.translate("The amount of tek cannot be negative."))
     if convertion_dict is None:
         convertion_dict = tek_convertions.default_convertion
     result = {}

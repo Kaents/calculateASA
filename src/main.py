@@ -5,7 +5,7 @@ import translations.def_translations as def_translations
 
 # Definicion de la funcion menu para que el usuario seleccione la opcion deseada 
 def menu():
-    print(def_translations.translate("\nWelcome to the conversion and creature level calculator"))
+    print(def_translations.translate("\nWelcome to the conversion and creature level calculator.\n"))
     print(def_translations.translate("1. Embryo level calculation"))
     print(def_translations.translate("2. Tek conversion calculation"))
     print(def_translations.translate("3. Create new conversion list"))
@@ -89,21 +89,31 @@ def main():
                 print("Invalid language.")
             continue
         if option == 1:
-            r = int(input(def_translations.translate("Enter the Reaper's level: ")))
-            p = int(input(def_translations.translate("Enter your character's level: ")))
-            try:
-                result = formulas.calculate_level(r, p)
-                print(def_translations.translate("------------------------------------------"))
-                print(def_translations.translate("The embryo's level is: {result}").format(result=result))
-                print(def_translations.translate("------------------------------------------"))
-            except ValueError as e:
-                print(e)
+            while True:
+                try:
+                    r = int(input(def_translations.translate("Enter the Reaper's level: ")))
+                    p = int(input(def_translations.translate("Enter your character's level: ")))
+                    result = formulas.calculate_level(r, p)
+                    print("------------------------------------------")
+                    print(def_translations.translate("The embryo's level is: {result}").format(result=result))
+                    print("------------------------------------------")
+                    break  # Exit loop if calculation is successful
+                except ValueError as e:
+                    print(e)
+                    print(def_translations.translate("Please enter valid, non-negative integer values."))
+                    print("------------------------------------------")
         elif option == 2:
             lista = choose_list()
-            amount = int(input(def_translations.translate("Amount of tek: ")))
-            print(def_translations.translate("------------------------------------------"))
-            print(formulas.convertion_tek(amount, lista))
-            print(def_translations.translate("------------------------------------------"))
+            while True:
+                try:
+                    amount = int(input(def_translations.translate("Amount of tek: ")))
+                    print("------------------------------------------")
+                    print(formulas.convertion_tek(amount, lista))
+                    print("------------------------------------------")
+                    break  # Exit loop if conversion is successful
+                except ValueError as e:
+                    print(e)
+                    print(def_translations.translate("Please enter a valid, non-negative number."))
         elif option == 3:
             create_new_list()
         elif option == 4:
