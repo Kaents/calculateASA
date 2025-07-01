@@ -9,6 +9,7 @@
 
   "_comentario2": "Los siguientes traducciones son para las funciones conversion, como la creacion, eliminacion y seleccion de listas",
   "Amount of tek: ": "Cantidad de tek: ",
+  "All items": "Todos los items",
   "Please enter a valid, non-negative number.": "Por favor, ingrese un número válido y no negativo.",
   "Create a new custom conversion list.": "Crea una nueva lista de conversiones personalizada.",
   "To skip an item, just press Enter without typing anything.": "Para saltar un elemento, simplemente presiona Enter sin escribir nada.",
@@ -39,5 +40,28 @@
 
   "_comentario5": "Los siguientes mensajes son para errores comunes en la entrada de datos y son del archivo formulas.py.",
   "Levels cannot be negative.": "Los niveles no pueden ser negativos.",
-  "The amount of tek cannot be negative.": "La cantidad de tek no puede ser negativa."
+  "The amount of tek cannot be negative.": "La cantidad de tek no puede ser negativa.",
+
+  "_comentario6": "Los siguientes son los items Tek y sus traducciones",
+  "Tek Celling": "Techo Tek",
+  "Tek Wall": "Pared Tek",
+  "Tek Pillar": "Pilar Tek",
+  "Tek Large Walls": "Paredes Grandes Tek",
+  "Tek Roof/Ramp/Stairs": "Techo/Rampa/Escaleras Tek",
+  "Tek Sloped Walls": "Paredes Inclinadas Tek",
+  "Tek Foundation": "Cimiento Tek",
+  "Tek Triangle Fundation": "Cimiento Triangular Tek",
+  "Tek Vaccum Compartments": "Compartimentos de Vacío Tek",
+  "Tek Generator": "Generador Tek",
+  "Tek Replicator": "Impresora Tek",
+  "Tek Cloning Chamber": "Clonadora Tek",
+  "Tek Dedicated Storage": "Almacenamiento Dedicado Tek",
+  "Tek Transmiter": "Transmisor Tek",
+  "Tek Trough": "Comedero Tek",
+  "Tek Triangle Ceiling": "Techo Triangular Tek",
+  "Medium TP": "TP Mediano",
+  "Hard Poly": "Polímero Duro",
+  "Black Perls": "Perlas Negras",
+  "Metal Lingots": "Lingotes de Metal",
+  "Crystal": "Cristal"
 }

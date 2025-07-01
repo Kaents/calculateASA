@@ -11,7 +11,7 @@ def menu():
     print(def_translations.translate("3. Create new conversion list"))
     print(def_translations.translate("4. Delete custom conversion list"))
     print(def_translations.translate("0. Exit"))
-    print(def_translations.translate("------------------------------------------"))
+    print("------------------------------------------")
     option = input(def_translations.translate("Select an option: "))
     if option.lower() == "idioma":
         return "idioma"
@@ -79,7 +79,7 @@ def delete_custom_list():
 def choose_item_or_all(convertion_dict):
     print(def_translations.translate("Choose an item to convert or 0 for all:"))
     for num, item in convertion_dict.items():
-        print(f"{num}. {item['name']}")
+        print(f"{num}. {def_translations.translate(item['name'])}")
     print("0. " + def_translations.translate("All items"))
     while True:
         try:
@@ -124,7 +124,9 @@ def main():
                     amount = int(input(def_translations.translate("Amount of tek: ")))
                     item_number = choose_item_or_all(lista)
                     print("------------------------------------------")
-                    print(formulas.convertion_tek(amount, lista, item_number if item_number != 0 else None))
+                    result = formulas.convertion_tek(amount, lista, item_number if item_number != 0 else None)
+                    for item_name, value in result.items():
+                        print(f"{def_translations.translate(item_name)}: {value}")
                     print("------------------------------------------")
                     break  # Exit loop if conversion is successful
                 except ValueError as e:
@@ -139,6 +141,7 @@ def main():
             break
         else:
             print(def_translations.translate("Invalid option. Please try again."))
+            
 # Llamada a la funcion main para ejecutar el programa
 if __name__ == "__main__":
     main()
