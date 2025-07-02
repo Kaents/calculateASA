@@ -85,5 +85,35 @@
       "value": 40000
     }
   },
-  "custom": []
+  "custom": [
+    {
+      "name": "Custom 1",
+      "items": {
+        "1": {
+          "name": "Tek Celling",
+          "value": 500
+        },
+        "2": {
+          "name": "Tek Wall",
+          "value": 100
+        },
+        "3": {
+          "name": "Tek Pillar",
+          "value": 3
+        },
+        "4": {
+          "name": "Tek Large Walls",
+          "value": 4
+        },
+        "5": {
+          "name": "Tek Roof/Ramp/Stairs",
+          "value": 500
+        },
+        "6": {
+          "name": "Tek Sloped Walls",
+          "value": 66
+        }
+      }
+    }
+  ]
 }

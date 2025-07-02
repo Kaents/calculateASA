@@ -1,0 +1,27 @@
+src/main.py
+    El archivo principal que principalmente se encarga de ser el menu del usuario, importa las funciones de los demas archivos
+    para poder realizar las operaciones que el usuario desea.
+
+src/formulas.py
+    Archivo que contiene las furmulas proncipales para verificar el nivel de embryon de Reapers y el calculo de la conversion standar
+    de las lista de items teks estandadr o personalizadas que se pueden crear.
+
+src/convertions/def_list_convertions.py
+    Archivo que contiene todas las funciones realizadas para crear, seleccionar y borrar listas de conversion tek e items,
+    que interactuan directamente con el usuario.
+
+src/convertions/tek_convertions.py
+    Archivo con la principal funcion de interactuar con el archivo json para el guardado de listas y borrado de estas.
+
+src/convertions/save_convertions.json
+    Archivo que funciona como base de datos que guarda las listas default como personalizadas de los usuarios para realizar 
+    convertiones.
+
+src/translate/def_translations.py
+    Archivo dedicado a interactuar directamentecon el archivo translations.json para traer las diferentes traducciones de
+    distitos idiomas que sean agregados a la app.
+
+src/translate/translations.json
+    Archivo que se usa como base de datos para las traducciones, para agregar nueva traducciones:
+    1.- Agregar nueva clave de idioma (en, es, fr, etc)
+    2.- Seguir el mismo fomrato que hay en el archivo (actualmente esta integrado de ingles a español)

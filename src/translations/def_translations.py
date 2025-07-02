@@ -25,9 +25,10 @@ def set_language(lang_code):
 # Translates the given text according to the current language
 def translate(text, **kwargs):
     lang = get_current_language()
-    if lang == "es":
-        translations = load_translations()
-        translated = translations.get(text, text)
+    translations = load_translations()
+    # Busca la traducción en el idioma actual, si no existe usa el texto original
+    if lang in translations:
+        translated = translations[lang].get(text, text)
         if kwargs:
             return translated.format(**kwargs)
         return translated
