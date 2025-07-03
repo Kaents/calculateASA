@@ -1,4 +1,4 @@
-#main de la aplicacion para el calculo de conversion y nivel de criatura
+# main of the application for conversion and creature level calculation
 import formulas
 from convertions.def_list_convertions import (
     create_new_list,
@@ -8,7 +8,7 @@ from convertions.def_list_convertions import (
 )
 import translations.def_translations as def_translations
 
-# Definicion de la funcion menu para que el usuario seleccione la opcion deseada 
+# Definition of the menu function to allow the user to select the desired option
 def menu():
     print(def_translations.translate("\nWelcome to the conversion and creature level calculator.\n"))
     print(def_translations.translate("1. Embryo level calculation"))
@@ -25,17 +25,18 @@ def menu():
     except ValueError:
         return -1
 
-# Definicion de la funcion main para ejecutar el programa
+# Definition of the main function to execute the program
 def main():
     while True:
         option = menu()
         if isinstance(option, str) and option.lower() == "idioma":
-            lang = input("Choose language (en/es): ").strip().lower()
+            lang = input(def_translations.translate("Choose language (en/es): ")).strip().lower()
+            # Change the language of the translations language key must be added when adding new language
             if lang in ("en", "es"):
                 def_translations.set_language(lang)
-                print("Language changed!")
+                print(def_translations.translate("Language changed!"))
             else:
-                print("Invalid language.")
+                print(def_translations.translate("Invalid language."))
             continue
         if option == 1:
             while True:
@@ -75,8 +76,7 @@ def main():
             break
         else:
             print(def_translations.translate("Invalid option. Please try again."))
+
             
-# Llamada a la funcion main para ejecutar el programa
 if __name__ == "__main__":
     main()
-# Este es el archivo principal del programa, que importa las funciones del archivo formulas.py

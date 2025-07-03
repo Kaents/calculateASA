@@ -45,7 +45,12 @@
         "Levels cannot be negative.": "Los niveles no pueden ser negativos.",
         "The amount of tek cannot be negative.": "La cantidad de tek no puede ser negativa.",
 
-        "_comentario6": "Los siguientes son los items Tek y sus traducciones",
+        "_comentario6": "Los traducciones son del cambio de idioma del programa",
+        "Choose language (en/es): ": "Elige el idioma (en/es): ",
+        "Language changed!": "¡Idioma cambiado!",
+        "Invalid language.": "Idioma inválido.",
+
+        "_comentario7": "Los siguientes son los items Tek y sus traducciones",
         "Tek Celling": "Techo Tek",
         "Tek Wall": "Pared Tek",
         "Tek Pillar": "Pilar Tek",
